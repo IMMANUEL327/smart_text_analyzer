@@ -42,6 +42,11 @@ if "user_text" not in st.session_state:
 if "appearance" not in st.session_state:
     st.session_state.appearance = "Light"
 
+
+def clear_user_text():
+    """Clear the text input before Streamlit recreates its widget."""
+    st.session_state.user_text = ""
+
 # Choose page colors from the display preference selected on the Settings page.
 if st.session_state.appearance == "Dark":
     page_background, page_text, heading_text = "#111827", "#F3F4F6", "#93C5FD"
@@ -103,12 +108,11 @@ if st.session_state.current_page == "Workspace":
     with col1:
         analyze_button = st.button("Analyze Text", use_container_width=True)
     with col2:
-        clear_button = st.button("Clear Text", use_container_width=True)
-
-    # Clear the input and rerun the app so the empty value is shown.
-    if clear_button:
-        st.session_state.user_text = ""
-        st.rerun()
+        st.button(
+            "Clear Text",
+            use_container_width=True,
+            on_click=clear_user_text,
+        )
 
     # Only analyze after the user presses the Analyze Text button.
     if analyze_button:
@@ -211,10 +215,10 @@ elif st.session_state.current_page == "Analysis History":
                 col1, col2 = st.columns(2)
                 col1.metric("Total Words", result["total_words"])
                 col2.metric("Unique Words", result["unique_words"])
-                st.write("**Cleaned text:**", result["cleaned_text"])
-                st.write("**Most frequent words:**", result["top_words"] or "None")
-                st.write("**Numbers:**", result["numbers"] or "None")
-                st.write("**Email addresses:**", result["email_addresses"] or "None")
+                st.write("Cleaned text:", result["cleaned_text"])
+                st.write("Most frequent words:", result["top_words"] or "None")
+                st.write("Numbers:", result["numbers"] or "None")
+                st.write("Email addresses:", result["email_addresses"] or "None")
 
 elif st.session_state.current_page == "Settings":
     # Settings show application details and a simple color-theme preference.
@@ -225,6 +229,6 @@ elif st.session_state.current_page == "Settings":
     st.caption("Choose a light or dark page background.")
 
     st.subheader("Application information")
-    st.write("**Name:** Smart Text Analyzer")
-    st.write("**Version:** 1.0.0")
-    st.write("**Purpose:** Analyze text, count words, and find numbers and email addresses.")
+    st.write("Name: Smart Text Analyzer")
+    st.write("Version: 1.0.0")
+    st.write("Purpose: Analyze text, count words, and find numbers and email addresses.")
