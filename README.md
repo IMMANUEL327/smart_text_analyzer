@@ -1,22 +1,65 @@
-# Smart Text Analyzer
+Smart Text Analyzer
 
-A simple Streamlit app for exploring text and viewing analysis results.
+Turn raw text into useful insights.
 
-## Features
+Smart Text Analyzer is a lightweight Python web application that helps users explore text, identify word patterns, and extract useful information through a clean, interactive dashboard.
 
-- Workspace with live word and character counts
-- Total and unique word counts, cleaned text, and top three words
-- Word-frequency chart, number extraction, and email extraction
-- Session-based history with a comparison chart, colored flow diagram, and clear-history button
-- Light and dark display preferences, plus application information
+Features
 
-## Run locally
+- Text Analysis: Word count, unique words, and cleaned text.
+- Word Frequency: Identify the three most frequently used words and visualise them in a chart.
+- Information Extraction: Extract numbers and email addresses.
+- Live Statistics: Track word and character counts as you type.
+- Analysis History: Review and manage previous analyses within the active session.
+- Settings: Access application information and basic display preferences.
 
-```powershell
+Built With
+
+- Python
+- Streamlit
+- Regular Expressions
+- Collections ("Counter")
+
+Getting Started
+
+1. Clone the repository
+
+git clone https://github.com/IMMNUEL327/smart-text-analyzer.git
+cd smart-text-analyzer
+
+2. Create and activate a virtual environment
+
 python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-streamlit run app.py
-```
+source .venv/Scripts/activate
 
-Analysis history is kept in the current Streamlit session and is cleared when that session ends.
+For Windows PowerShell, use ".venv\Scripts\Activate.ps1" instead.
+
+3. Install dependencies
+
+python -m pip install -r requirements.txt
+
+4. Run the application
+
+python -m streamlit run app.py
+
+Project Structure
+
+smart-text-analyzer/
+├── app.py
+├── analyzer.py
+├── requirements.txt
+├── README.md
+└── .gitignore
+
+What's Next?
+
+Planned improvements include sentence and paragraph statistics, reading-time estimation, keyword search, and downloadable analysis reports.
+
+About
+
+Built by Chukwuma Emmanuel Chiagozie.
+
+"GitHub Profile" (https://github.com/IMMNUEL327)
+
+
+Simple interface. Meaningful insights.
